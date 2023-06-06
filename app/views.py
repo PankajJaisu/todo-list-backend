@@ -17,6 +17,8 @@ so class Based View Provide More Readibility,Reusability in such Cases
 """
 
 @api_view(['POST'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def add_tag(request):
     if request.data!={}:
         for i in request.data:
@@ -27,6 +29,8 @@ def add_tag(request):
     
 
 @api_view(['POST'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def add_task(request):
     data = request.data 
     task_serializer = TaskSerializer(data=data)  
@@ -47,7 +51,7 @@ class TaskView(APIView):
             response_data = TaskSerializer(task_queryset.last()).data
             return JsonResponse({"message":"Data Fetched Successfully for Task {}".format(id),"data":response_data},status=status.HTTP_200_OK)
         else:
-            return JsonResponse({"message":"Task Not Found"},status=status.HTTP_404_FOUND)
+            return JsonResponse({"message":"Task Not Found"},status=status.HTTP_404_NOT_FOUND)
 
     def put(self,request,id):
         task_queryset = Task.objects.filter(id=id)
