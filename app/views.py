@@ -4,6 +4,10 @@ from django.http import JsonResponse
 from rest_framework import status 
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import authentication_classes,permission_classes
+
 # Create your views here.
 
 
@@ -33,7 +37,8 @@ def add_task(request):
         return JsonResponse({"error":task_serializer.errors},status=status.HTTP_400_BAD_REQUEST)
 
 class TaskView(APIView):
-   
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
    
     def get(self,request,id):
         task_queryset = Task.objects.filter(id=id)
@@ -60,7 +65,7 @@ class TaskView(APIView):
         task_queryset = Task.objects.filter(id=id)
         if len(task_queryset)>0:
             task_queryset.delete()
-            return JsonResponse({"message":"Task {} deleted Successfully".format(id)},status=status.HTTP_204_NO_CONTENT)
+            return JsonResponse({"message":"Task {} deleted Successfully"},status=status.HTTP_204_NO_CONTENT)
         else:
             return JsonResponse({"message":"Task Not Found"},status=status.HTTP_404_NOT_FOUND)
 
@@ -68,7 +73,10 @@ class TaskView(APIView):
 # API to get all Task Data ,we will use Function based View here for its simplicity 
 
 @api_view(['GET'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def get_all_task(request):
+    print("request.user::",request.user)
     all_task = Task.objects.all()
     if len(all_task)>0:
         response_data = Task.objects.all().values()
