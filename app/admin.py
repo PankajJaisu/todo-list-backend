@@ -1,19 +1,22 @@
 from django.contrib import admin
 from .models import *
-# Register your models here.
+
+
+#Added the required filter based on the Assignment Given
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Task Information', {
+
             'fields': ('title', 'description', 'tags')
         }),
-        ('Date and Status', {
-            'fields': ('created_at', 'due_date', 'status')
+        ('Status', {
+            'fields': ('status',)
         }),
     )
-    exclude = ('created_at','due_date',)
-    list_display = ('title', 'status', 'due_date')
+    
+    list_display = ('title', 'status', 'due_date','created_at',) 
     list_filter = ('status', 'due_date')
     search_fields = ('title', 'description')
 
