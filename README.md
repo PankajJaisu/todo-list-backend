@@ -14,24 +14,20 @@ Before running the project, ensure that you have the following prerequisites ins
 2. Open a terminal or command prompt and navigate to the project's root directory.
 
 3. Create a virtual environment (optional but recommended):
-
-
 ```shell
-python manage.py runserver
+python -m venv env
 ```
-4.Activate the virtual environment:
+4. Activate the virtual environment:
 + For Windows:
 ```shell
 env\Scripts\activate
 ```
 + For Unix/Linux:
-```
-shell
+```shell
 source env/bin/activate
 ```
 5.Install project dependencies:
-```
-shell
+```shell
 pip install -r requirements.txt
 ```
 ## Configuration
@@ -43,22 +39,17 @@ pip install -r requirements.txt
 
 ## Database Setup
 1. Apply database migrations:
-```
-shell
+```shell
 python manage.py migrate
 ```
 
 2. (Optional) Create a superuser account to access the admin interface:
-```
-shell
-
+```shell
 python manage.py createsuperuser
 ```
 ## Running the Project
 1. Start the Django development server:
-```
-shell
-
+```shell
 python manage.py runserver
 ```
 
