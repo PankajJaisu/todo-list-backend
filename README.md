@@ -55,6 +55,7 @@ python manage.py runserver
 
 2. Open a web browser and access the local development server at http://localhost:8000/.
 
+
 3. To access the admin interface, append /admin to the URL (e.g., http://localhost:8000/admin). Log in using the superuser credentials created earlier.
 
 ## Usage
@@ -63,3 +64,7 @@ Tasks have fields such as title, description, tags, created date, due date, and 
 Tags can be associated with multiple tasks.
 The changelist view allows you to view and filter tasks based on status and due date.
 Use the search field to search for tasks based on title and description.
+
+## Postman Collection 
+https://blue-rocket-427464.postman.co/workspace/Django-API's~30d1bae0-e8a0-43d1-8ff7-96e0a492d760/collection/26432004-6adfb7ae-4437-42d7-a287-c7e8500b6aa1?action=share&creator=26432004
+
